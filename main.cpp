@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <random>
 using namespace std;
 
 struct Team {
@@ -11,7 +13,12 @@ struct Team {
 
 
 int main(){
-
+    vector<string> nomi = {
+        "AN Brescia",
+        "Pro Recco",
+        "De Akker Bologna",
+        "Trieste"
+    };
 
     return 0;
 }
