@@ -11,6 +11,13 @@ struct Team {
     string nome;
     int attacco;
     int difesa;
+    int partitegiocate = 0;
+    int partitevinte = 0;
+    int partitepareggiate = 0;
+    int partiteperse = 0;
+    int puntifatti = 0;
+    int golfatti = 0;
+    int golsubiti = 0;
 };
 
 void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
