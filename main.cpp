@@ -31,12 +31,11 @@ int main(){
         "De Akker Bologna",
         "Trieste"
     };
-    generasquadra(nomi, squadre);
     vector<Team> squadre = {
 
     };
 
-    
+    generasquadra(nomi, squadre);
 
     return 0;
 }
