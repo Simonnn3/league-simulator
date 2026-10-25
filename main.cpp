@@ -23,6 +23,14 @@ void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
     }
 };
 
+void stampasquadra(vector<Team> &squadre){
+    for (auto Team : squadre){
+        cout << Team.nome << endl;
+        cout << "Attacco: " << Team.attacco << endl;
+        cout << "Difesa: " << Team.difesa << endl << endl;
+    }
+}
+
 
 int main(){
     vector<string> nomi = {
@@ -32,10 +40,11 @@ int main(){
         "Trieste"
     };
     vector<Team> squadre = {
-
+        
     };
 
     generasquadra(nomi, squadre);
+    stampasquadra(squadre);
 
     return 0;
 }
