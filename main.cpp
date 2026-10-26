@@ -2,12 +2,13 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 random_device rd;
 mt19937 generatore(rd());
 
 struct Team {
-
     string nome;
     int attacco;
     int difesa;
@@ -38,8 +39,47 @@ void stampasquadra(vector<Team> &squadre){
     }
 }
 
+void giocapartita(Team& squadra1, Team& squadra2){
+    int bonussquadra1 = (squadra1.attacco - squadra2.difesa)/10;
+    int golsquadra1 = (rand() % 21) + bonussquadra1;
+    int bonussquadra2 = (squadra2.attacco - squadra1.difesa)/10;
+    int golsquadra2 = (rand() % 21) + bonussquadra2;
+
+    squadra1.partitegiocate++;
+    squadra2.partitegiocate++;
+
+    squadra1.golfatti += golsquadra1;
+    squadra2.golfatti += golsquadra2;
+
+    squadra1.golsubiti += golsquadra2;
+    squadra2.golsubiti += golsquadra1;
+
+    if (golsquadra1 > golsquadra2){
+        squadra1.partitevinte++;
+        squadra1.puntifatti += 3;
+        squadra2.partiteperse++;
+        cout << squadra1.nome << " Ha vinto " << squadra1.golfatti << "- " << squadra2.golfatti <<endl;
+    }
+    else if (golsquadra1 < golsquadra2){
+        squadra2.partitevinte++;
+        squadra2.puntifatti += 3;
+        squadra1.partiteperse++;
+        cout << squadra2.nome << " Ha vinto " << squadra2.golfatti << "- " << squadra1.golfatti <<endl;
+    }
+    else{
+        squadra1.partitepareggiate++;
+        squadra1.puntifatti += 1;
+        squadra2.partitepareggiate++;
+        squadra2.puntifatti += 1;
+        cout << squadra1.nome << " E " << squadra2.nome << "Hanno pareggiato " << squadra1.golfatti << "- " << squadra2.golfatti <<endl;
+    };
+
+
+}
+
 
 int main(){
+    srand(time(nullptr));
     vector<string> nomi = {
         "AN Brescia",
         "Pro Recco",
@@ -52,6 +92,7 @@ int main(){
 
     generasquadra(nomi, squadre);
     stampasquadra(squadre);
+    giocapartita(squadre[0], squadre[1]);
 
     return 0;
 }
