@@ -21,6 +21,12 @@ struct Team {
     int golsubiti = 0;
 };
 
+struct Partita {
+    int squadraCasa;
+    int squadraTrasferta;
+    bool partitaGiocata = false;
+};
+
 void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
     for (string nome : nomi){
         Team nuovaSquadra;
@@ -36,6 +42,17 @@ void stampasquadra(vector<Team> &squadre){
         cout << Team.nome << endl;
         cout << "Attacco: " << Team.attacco << endl;
         cout << "Difesa: " << Team.difesa << endl << endl;
+    }
+}
+
+void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario){
+    for (int i = 0; i < squadre.size(); i++) {
+        for (int j = i + 1; j < squadre.size(); j++){
+            Partita nuovaPartita;
+            nuovaPartita.squadraCasa = i;
+            nuovaPartita.squadraTrasferta = j;
+            Calendario.push_back(nuovaPartita);
+        }
     }
 }
 
@@ -80,6 +97,7 @@ void giocapartita(Team& squadra1, Team& squadra2){
 
 int main(){
     srand(time(nullptr));
+
     vector<string> nomi = {
         "AN Brescia",
         "Pro Recco",
@@ -87,6 +105,10 @@ int main(){
         "Trieste"
     };
     vector<Team> squadre = {
+        
+    };
+
+    vector<Partita> calendario = {
         
     };
 
