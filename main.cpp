@@ -27,6 +27,8 @@ struct Partita {
     bool partitaGiocata = false;
 };
 
+void giocapartita(Team& squadra1, Team& squadra2);
+
 void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
     for (string nome : nomi){
         Team nuovaSquadra;
@@ -56,11 +58,29 @@ void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario){
     }
 }
 
+void simulacampionato(vector<Team>& squadre, vector<Partita>& Calendario){
+    for(Partita& partita : Calendario ){
+        giocapartita(
+            squadre[partita.squadraCasa],
+            squadre[partita.squadraTrasferta]
+        );
+        partita.partitaGiocata = true;
+    }
+}
+
 void giocapartita(Team& squadra1, Team& squadra2){
     int bonussquadra1 = (squadra1.attacco - squadra2.difesa)/10;
     int golsquadra1 = (rand() % 21) + bonussquadra1;
     int bonussquadra2 = (squadra2.attacco - squadra1.difesa)/10;
     int golsquadra2 = (rand() % 21) + bonussquadra2;
+
+    if (golsquadra1 < 0) {
+        golsquadra1 = 0;
+    }
+
+    if (golsquadra2 < 0) {
+        golsquadra2 = 0;
+    }
 
     squadra1.partitegiocate++;
     squadra2.partitegiocate++;
@@ -114,7 +134,8 @@ int main(){
 
     generasquadra(nomi, squadre);
     stampasquadra(squadre);
-    giocapartita(squadre[0], squadre[1]);
+    creacalendario(squadre, calendario);
+    simulacampionato(squadre, calendario);
 
     return 0;
 }
