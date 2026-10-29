@@ -58,24 +58,20 @@ void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario) {
         indiciSquadre.push_back(i);
     }
 
-   
     if (indiciSquadre.size() % 2 != 0) {
         indiciSquadre.push_back(-1);
     }
 
     int numeroSquadre = indiciSquadre.size();
-    int numeroGiornate = numeroSquadre - 1;
+    int giornateAndata = numeroSquadre - 1;
     int partitePerGiornata = numeroSquadre / 2;
 
-    
-    for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
+    for (int giornata = 1; giornata <= giornateAndata; giornata++) {
 
-      
         for (int i = 0; i < partitePerGiornata; i++) {
             int casa = indiciSquadre[i];
             int trasferta = indiciSquadre[numeroSquadre - 1 - i];
 
-           
             if (casa == -1 || trasferta == -1) {
                 continue;
             }
@@ -89,7 +85,6 @@ void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario) {
             Calendario.push_back(nuovaPartita);
         }
 
-        
         int ultimaSquadra = indiciSquadre.back();
 
         for (int i = numeroSquadre - 1; i > 1; i--) {
@@ -98,7 +93,23 @@ void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario) {
 
         indiciSquadre[1] = ultimaSquadra;
     }
+
+    int numeroPartiteAndata = Calendario.size();
+
+    for (int i = 0; i < numeroPartiteAndata; i++) {
+        Partita ritorno;
+
+        ritorno.squadraCasa = Calendario[i].squadraTrasferta;
+        ritorno.squadraTrasferta = Calendario[i].squadraCasa;
+        ritorno.giornata = Calendario[i].giornata + giornateAndata;
+        ritorno.partitaGiocata = false;
+
+        Calendario.push_back(ritorno);
+    }
 }
+
+
+ 
 
 
 void stampacalendario(const vector<Team>& squadre, const vector<Partita>& Calendario) {
@@ -111,6 +122,7 @@ void stampacalendario(const vector<Team>& squadre, const vector<Partita>& Calend
     }
 
     for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
+        cout << endl;
         cout << "GIORNATA " << giornata
              << ": ";
 
@@ -138,6 +150,7 @@ void simulacampionato(vector<Team>& squadre, vector<Partita>& Calendario) {
     cout << "RISULTATI: " << endl << endl;
     for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
 
+        cout << endl;
         cout << "GIORNATA " << giornata << ": ";
 
         for (Partita& partita : Calendario) {
@@ -203,9 +216,19 @@ int main(){
 
     vector<string> nomi = {
         "AN Brescia",
+        "RN Savona",
         "Pro Recco",
-        "De Akker Bologna",
-        "Trieste"
+        "Trieste PN",
+        "CN Posillipo",
+        "CC Napoli",
+        "CC Ortigia",
+        "SS Lazio",
+        "Chiavari Nuoto",
+        "Olympic Roma",
+        "Roma Vis Nova",
+        "SC Quinto",
+        "Telimar Palermo",
+        "De Akker Bologna"
     };
     vector<Team> squadre = {
         
