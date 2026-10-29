@@ -111,7 +111,7 @@ void stampacalendario(const vector<Team>& squadre, const vector<Partita>& Calend
     }
 
     for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
-        cout << " GIORNATA " << giornata
+        cout << "GIORNATA " << giornata
              << ": ";
 
         for (const Partita& partita : Calendario) {
@@ -120,6 +120,7 @@ void stampacalendario(const vector<Team>& squadre, const vector<Partita>& Calend
             }
         }
     }
+    cout << endl;
 }
 
 
@@ -134,9 +135,10 @@ void simulacampionato(vector<Team>& squadre, vector<Partita>& Calendario) {
         }
     }
 
+    cout << "RISULTATI: " << endl << endl;
     for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
 
-        cout << "RISULTATI GIORNATA " << giornata << ": ";
+        cout << "GIORNATA " << giornata << ": ";
 
         for (Partita& partita : Calendario) {
             if (partita.giornata == giornata && !partita.partitaGiocata) {
@@ -215,10 +217,8 @@ int main(){
 
     generasquadra(nomi, squadre);
     stampasquadra(squadre);
-
     creacalendario(squadre, calendario);
     stampacalendario(squadre, calendario);
-
     simulacampionato(squadre, calendario);
 
     return 0;
