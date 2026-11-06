@@ -5,11 +5,12 @@
 #include <random>
 #include <cstdlib>
 #include <ctime>
+#include "Team.h"
 using namespace std;
 random_device rd;
 mt19937 generatore(rd());
 
-struct Team {
+/* struct Team {
     string nome;
     int attacco;
     int difesa;
@@ -20,7 +21,7 @@ struct Team {
     int puntifatti = 0;
     int golfatti = 0;
     int golsubiti = 0;
-};
+}; */
 
 struct Partita {
     int squadraCasa;
