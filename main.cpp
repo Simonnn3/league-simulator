@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <random>
 #include <cstdlib>
 #include <ctime>
@@ -210,6 +211,24 @@ void giocapartita(Team& squadra1, Team& squadra2){
 
 }
 
+void stampaclassifica(const vector<Team>& squadre){
+    vector<Team> classifica;
+
+    for (const Team& squadra : squadre){
+        classifica.push_back(squadra);
+    }
+
+    sort(classifica.begin(), classifica.end(), [](const Team& a, const Team& b) {
+        return a.puntifatti > b.puntifatti;
+    });
+
+    cout << "CLASSIFICA FINALE" <<endl;
+
+     for (int i = 0; i < classifica.size(); i++) {
+        cout << i + 1 << ". " << classifica[i].nome << " - " << classifica[i].puntifatti << " punti" << endl;
+    }
+}
+
 
 int main(){
     srand(time(nullptr));
@@ -243,6 +262,7 @@ int main(){
     creacalendario(squadre, calendario);
     stampacalendario(squadre, calendario);
     simulacampionato(squadre, calendario);
+    stampaclassifica(squadre);
 
     return 0;
 }
