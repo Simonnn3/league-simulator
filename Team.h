@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 struct Team {
     std::string nome;
@@ -14,3 +15,6 @@ struct Team {
     int golfatti = 0;
     int golsubiti = 0;
 };
+
+void generasquadra(const std::vector<std::string>& nomi,std::vector<Team>& squadre);
+void stampasquadra(const std::vector<Team>& squadre);

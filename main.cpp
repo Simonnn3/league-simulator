@@ -10,18 +10,6 @@ using namespace std;
 random_device rd;
 mt19937 generatore(rd());
 
-/* struct Team {
-    string nome;
-    int attacco;
-    int difesa;
-    int partitegiocate = 0;
-    int partitevinte = 0;
-    int partitepareggiate = 0;
-    int partiteperse = 0;
-    int puntifatti = 0;
-    int golfatti = 0;
-    int golsubiti = 0;
-}; */
 
 struct Partita {
     int squadraCasa;
@@ -32,7 +20,7 @@ struct Partita {
 
 void giocapartita(Team& squadra1, Team& squadra2);
 
-void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
+/*void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
     for (string nome : nomi){
         Team nuovaSquadra;
         nuovaSquadra.nome = nome;
@@ -48,7 +36,7 @@ void stampasquadra(vector<Team> &squadre){
         cout << "Attacco: " << Team.attacco << endl;
         cout << "Difesa: " << Team.difesa << endl << endl;
     }
-}
+} */
 
 
 void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario) {
@@ -259,7 +247,7 @@ int main(){
     };
 
     generasquadra(nomi, squadre);
-    stampasquadra(squadre);
+    stampasquadra(squadre); 
     creacalendario(squadre, calendario);
     stampacalendario(squadre, calendario);
     simulacampionato(squadre, calendario);
