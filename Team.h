@@ -16,5 +16,5 @@ struct Team {
     int golsubiti = 0;
 };
 
-void generasquadra(const std::vector<std::string>& nomi,std::vector<Team>& squadre);
+void generasquadra(const std::vector<std::string>& nomi, std::vector<Team>& squadre);
 void stampasquadra(const std::vector<Team>& squadre);
