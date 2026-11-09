@@ -67,7 +67,7 @@ void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario) {
     }
 }
 
-void stampacalendario(const vector<Team>& squadre, const vector<Partita>& Calendario) {
+void stampacalendario (const vector<Team>& squadre, const vector<Partita>& Calendario){
     int numeroGiornate = 0;
 
     for (const Partita& partita : Calendario) {
@@ -77,17 +77,20 @@ void stampacalendario(const vector<Team>& squadre, const vector<Partita>& Calend
     }
 
     for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
-        cout << endl;
-        cout << "GIORNATA " << giornata
-             << ": ";
+        cout << endl << "GIORNATA " << giornata << ":" << endl;
 
         for (const Partita& partita : Calendario) {
             if (partita.giornata == giornata) {
-                cout << squadre[partita.squadraCasa].nome << " - " << squadre[partita.squadraTrasferta].nome << endl;
+                cout << squadre[partita.squadraCasa].nome << " - " << squadre[partita.squadraTrasferta].nome;
+
+                if (partita.partitaGiocata) {
+                    cout << ": " << partita.golCasa << " - " << partita.golTrasferta;
+                }
+
+                cout << endl;
             }
         }
     }
-    cout << endl;
 }
 
 pair<int, int> giocapartita(Team& squadra1, Team& squadra2){
@@ -143,28 +146,21 @@ void simulacampionato(vector<Team>& squadre, vector<Partita>& Calendario) {
         }
     }
 
-    cout << "RISULTATI: " << endl << endl;
     for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
-
-        cout << endl;
-        cout << "GIORNATA " << giornata << ": ";
 
         for (Partita& partita : Calendario) {
             if (partita.giornata == giornata && !partita.partitaGiocata) {
                 auto risultato = giocapartita(
-                    squadre[partita.squadraCasa],
-                    squadre[partita.squadraTrasferta]
+                    squadre[partita.squadraCasa], squadre[partita.squadraTrasferta]
                 );
 
                 partita.golCasa = risultato.first;
                 partita.golTrasferta = risultato.second;
 
                 partita.partitaGiocata = true;
-
-                cout << squadre[partita.squadraCasa].nome << " - " << squadre[partita.squadraTrasferta].nome << ": " << risultato.first << " - " << risultato.second << endl;
             }
         }
-    }
+    } 
 }
 
 std::vector<Team> calcolaclassifica(const std::vector<Team>& squadre){
