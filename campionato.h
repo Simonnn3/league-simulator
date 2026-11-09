@@ -17,4 +17,5 @@ void creacalendario(const std::vector<Team>& squadre, std::vector<Partita>& Cale
 void stampacalendario(const std::vector<Team>& squadre, const std::vector<Partita>& Calendario);
 std::pair<int, int> giocapartita(Team& squadra1, Team& squadra2);
 void simulacampionato(std::vector<Team>& squadre, std::vector<Partita>& Calendario);
-void stampaclassifica(const std::vector<Team>& squadre);
+std::vector<Team> calcolaclassifica(const std::vector<Team>& squadre);
+void stampaclassifica(const std::vector<Team>& classifica);

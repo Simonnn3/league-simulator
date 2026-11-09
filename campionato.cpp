@@ -167,8 +167,8 @@ void simulacampionato(vector<Team>& squadre, vector<Partita>& Calendario) {
     }
 }
 
-void stampaclassifica(const vector<Team>& squadre){
-    vector<Team> classifica;
+std::vector<Team> calcolaclassifica(const std::vector<Team>& squadre){
+     vector<Team> classifica;
 
     for (const Team& squadra : squadre){
         classifica.push_back(squadra);
@@ -178,6 +178,11 @@ void stampaclassifica(const vector<Team>& squadre){
         return a.puntifatti > b.puntifatti;
     });
 
+    return classifica;
+}
+
+void stampaclassifica(const vector<Team>& classifica){
+    
     cout << "CLASSIFICA FINALE" <<endl;
 
      for (int i = 0; i < classifica.size(); i++) {
