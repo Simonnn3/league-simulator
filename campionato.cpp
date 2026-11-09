@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <vector>
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -89,7 +90,7 @@ void stampacalendario(const vector<Team>& squadre, const vector<Partita>& Calend
     cout << endl;
 }
 
-void giocapartita(Team& squadra1, Team& squadra2){
+pair<int, int> giocapartita(Team& squadra1, Team& squadra2){
     int bonussquadra1 = (squadra1.attacco - squadra2.difesa)/10;
     int golsquadra1 = (rand() % 21) + bonussquadra1;
     int bonussquadra2 = (squadra2.attacco - squadra1.difesa)/10;
@@ -128,7 +129,7 @@ void giocapartita(Team& squadra1, Team& squadra2){
         squadra2.partitepareggiate++;
         squadra2.puntifatti += 1;
     };
-    cout << squadra1.nome << " - " << squadra2.nome << ": " << golsquadra1 << " - " << golsquadra2 <<endl;
+    return {golsquadra1, golsquadra2};
 
 
 }
@@ -150,11 +151,17 @@ void simulacampionato(vector<Team>& squadre, vector<Partita>& Calendario) {
 
         for (Partita& partita : Calendario) {
             if (partita.giornata == giornata && !partita.partitaGiocata) {
-                giocapartita(
+                auto risultato = giocapartita(
                     squadre[partita.squadraCasa],
                     squadre[partita.squadraTrasferta]
                 );
+
+                partita.golCasa = risultato.first;
+                partita.golTrasferta = risultato.second;
+
                 partita.partitaGiocata = true;
+
+                cout << squadre[partita.squadraCasa].nome << " - " << squadre[partita.squadraTrasferta].nome << ": " << risultato.first << " - " << risultato.second << endl;
             }
         }
     }

@@ -11,7 +11,7 @@ using namespace std;
 random_device rd;
 mt19937 generatore(rd());
 
-void giocapartita(Team& squadra1, Team& squadra2);
+//void giocapartita(Team& squadra1, Team& squadra2);
 
 int main(){
     srand(time(nullptr));
