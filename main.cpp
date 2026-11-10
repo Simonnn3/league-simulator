@@ -37,7 +37,7 @@ int main(){
     stampasquadra(squadre); 
     stampacalendario(squadre, calendario);
 
-    simulacampionato(squadre, calendario);
+    eseguisimulazione(squadre, calendario);
 
     stampacalendario(squadre, calendario);
 

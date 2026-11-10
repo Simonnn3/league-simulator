@@ -9,3 +9,8 @@ void inizializzacampionato(
     std::vector<Team>& squadre,
     std::vector<Partita>& calendario
 );
+
+void eseguisimulazione(
+    std::vector<Team>& squadre,
+    std::vector<Partita>& calendario
+);
