@@ -1,5 +1,4 @@
 #include "Team.h"
-#include <iostream>
 #include <cstdlib>
 
 using namespace std;
@@ -14,10 +13,5 @@ void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
     }
 }
 
-void stampasquadra(const vector<Team>& squadre){
-    for (auto Team : squadre){
-        cout << Team.nome << endl;
-        cout << "Attacco: " << Team.attacco << endl;
-        cout << "Difesa: " << Team.difesa << endl << endl;
-    }
-}
+
+  

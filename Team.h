@@ -17,4 +17,3 @@ struct Team {
 };
 
 void generasquadra(const std::vector<std::string>& nomi, std::vector<Team>& squadre);
-void stampasquadra(const std::vector<Team>& squadre);

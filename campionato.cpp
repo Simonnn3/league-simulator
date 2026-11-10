@@ -1,8 +1,6 @@
 #include "Team.h"
 #include "campionato.h" 
-#include <iostream>
 #include <cstdlib>
-#include <vector>
 #include <algorithm>
 #include <utility>
 
@@ -64,32 +62,6 @@ void creacalendario(const vector<Team>& squadre, vector<Partita>& Calendario) {
         ritorno.partitaGiocata = false;
 
         Calendario.push_back(ritorno);
-    }
-}
-
-void stampacalendario (const vector<Team>& squadre, const vector<Partita>& Calendario){
-    int numeroGiornate = 0;
-
-    for (const Partita& partita : Calendario) {
-        if (partita.giornata > numeroGiornate) {
-            numeroGiornate = partita.giornata;
-        }
-    }
-
-    for (int giornata = 1; giornata <= numeroGiornate; giornata++) {
-        cout << endl << "GIORNATA " << giornata << ":" << endl;
-
-        for (const Partita& partita : Calendario) {
-            if (partita.giornata == giornata) {
-                cout << squadre[partita.squadraCasa].nome << " - " << squadre[partita.squadraTrasferta].nome;
-
-                if (partita.partitaGiocata) {
-                    cout << ": " << partita.golCasa << " - " << partita.golTrasferta;
-                }
-
-                cout << endl;
-            }
-        }
     }
 }
 
@@ -177,13 +149,5 @@ std::vector<Team> calcolaclassifica(const std::vector<Team>& squadre){
     return classifica;
 }
 
-void stampaclassifica(const vector<Team>& classifica){
-    
-    cout << "CLASSIFICA FINALE" <<endl;
-
-     for (int i = 0; i < classifica.size(); i++) {
-        cout << i + 1 << ". " << classifica[i].nome << " - " << classifica[i].puntifatti << " punti" << endl;
-    }
-}
 
 
