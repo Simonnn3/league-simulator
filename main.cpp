@@ -41,7 +41,7 @@ int main(){
 
     stampacalendario(squadre, calendario);
 
-    vector<Team> classifica = calcolaclassifica(squadre);
+    vector<Team> classifica = ottieniclassifica(squadre);
     stampaclassifica(classifica);
 
     return 0;
