@@ -1,9 +1,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include "Team.h"
 #include "campionato.h"
 #include "console_ui.h"
+#include "application/CampionatoService.h"
 using namespace std;
 
 int main(){
@@ -29,12 +32,15 @@ int main(){
     vector<Team> squadre;
     vector<Partita> calendario;
 
-    generasquadra(nomi, squadre);
+    inizializzacampionato(nomi, squadre, calendario);
+
     stampasquadra(squadre); 
-    creacalendario(squadre, calendario);
     stampacalendario(squadre, calendario);
+
     simulacampionato(squadre, calendario);
+
     stampacalendario(squadre, calendario);
+
     vector<Team> classifica = calcolaclassifica(squadre);
     stampaclassifica(classifica);
 
