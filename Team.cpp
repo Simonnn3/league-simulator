@@ -13,5 +13,4 @@ void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
     }
 }
 
-
   
