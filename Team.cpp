@@ -12,5 +12,4 @@ void generasquadra(const vector<string>&nomi, vector<Team>& squadre){
         squadre.push_back(nuovaSquadra);
     }
 }
-
   

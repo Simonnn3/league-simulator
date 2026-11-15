@@ -4,6 +4,7 @@
 #include <vector>
 
 struct Team {
+    int id = 0;
     std::string nome;
     int attacco = 0;
     int difesa = 0;

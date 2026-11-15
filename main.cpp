@@ -81,7 +81,7 @@ int main(){
 
     eseguisimulazione(squadre, calendario);
 
-    stampacalendario(squadre, calendario);
+   stampacalendario(squadre, calendario);
 
     vector<Team> classifica = ottieniclassifica(squadre);
     stampaclassifica(classifica);
