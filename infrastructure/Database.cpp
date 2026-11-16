@@ -150,3 +150,81 @@ bool caricasquadre(std::vector<Team>& squadre) {
 
     return true;
 }
+
+bool creastagione(const std::string& nome, const std::string& data_inizio, int& id_stagione) {
+
+    const char* sql = "INSERT OR IGNORE INTO Stagioni (nome, data_inizio) VALUES (?, ?)";
+
+    sqlite3_stmt* stmt = nullptr;
+
+    int risultato = sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);
+
+    if (risultato != SQLITE_OK) {
+        return false;
+    }
+
+    sqlite3_bind_text(stmt, 1, nome.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, data_inizio.c_str(), -1, SQLITE_TRANSIENT);
+
+    risultato = sqlite3_step(stmt);
+
+    sqlite3_finalize(stmt);
+
+    if (risultato != SQLITE_DONE) {
+        return false;
+    }
+
+    const char* sql_id = "SELECT id FROM Stagioni WHERE nome = ?";
+
+    risultato = sqlite3_prepare_v2(db, sql_id, -1, &stmt, nullptr);
+
+    if (risultato != SQLITE_OK) {
+        return false;
+    }
+
+    sqlite3_bind_text(stmt, 1, nome.c_str(), -1, SQLITE_TRANSIENT);
+
+    risultato = sqlite3_step(stmt);
+
+    if (risultato == SQLITE_ROW) {
+        id_stagione = sqlite3_column_int(stmt, 0);
+        sqlite3_finalize(stmt);
+        return true;
+    }
+
+    sqlite3_finalize(stmt);
+    return false;
+}
+
+bool salvastagionesquadre(const std::vector<Team>& squadre, int id_stagione) {
+
+    const char* sql = "INSERT OR IGNORE INTO StagioneSquadre (stagione_id, squadra_id) VALUES (?, ?)";
+
+    sqlite3_stmt* stmt = nullptr;
+
+    int risultato = sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);
+
+    if (risultato != SQLITE_OK) {
+        return false;
+    }
+
+    for (const Team& squadra : squadre) {
+
+        sqlite3_bind_int(stmt, 1, id_stagione);
+        sqlite3_bind_int(stmt, 2, squadra.id);
+
+        risultato = sqlite3_step(stmt);
+
+        if (risultato != SQLITE_DONE) {
+            sqlite3_finalize(stmt);
+            return false;
+        }
+
+        sqlite3_reset(stmt);
+        sqlite3_clear_bindings(stmt);
+    }
+
+    sqlite3_finalize(stmt);
+
+    return true;
+}
